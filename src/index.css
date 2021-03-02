@@ -1,3 +1,24 @@
+html * {
+  font-family: "SFProDisplay-Regular";
+}
+
+@font-face {font-family: 'SFProDisplay-Regular';
+  src: local('SFProDisplay-Regular'),
+  url("./fonts/sfprodisplay/SFProDisplay-Regular.ttf") format("truetype"); /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+}
+@font-face {font-family: 'SFProDisplay-Medium';
+  src: local('SFProDisplay-Medium'),
+  url("./fonts/sfprodisplay/SFProDisplay-Medium.ttf") format("truetype"); /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+}
+@font-face {font-family: 'SFProDisplay-Bold';
+  src: local('SFProDisplay-Bold'),
+  url("./fonts/sfprodisplay/SFProDisplay-Bold.ttf") format("truetype"); /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+}
+@font-face {font-family: 'SFProDisplay-Semibold';
+  src: local('SFProDisplay-Semibold'),
+  url("./fonts/sfprodisplay/SFProDisplay-Semibold.ttf") format("truetype"); /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

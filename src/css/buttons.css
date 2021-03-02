@@ -1,0 +1,32 @@
+.ant-btn.button-default-accent{
+    height: 40px;
+    border-radius: 4px;
+    background-color: var(--white);
+    border: solid 1px var(--dodger-blue);
+    color: var(--dodger-blue);
+    width: 100%;
+}
+
+.ant-btn.button-default-accent:hover, .ant-btn.button-default-accent:focus, .ant-btn.button-default-accent:active{
+    border-radius: 4px;
+    color: var(--white);
+    background-color: var(--dodger-blue);
+    border: solid 1px var(--dodger-blue);
+}
+
+
+.ant-btn.button-filter{
+    height: 40px;
+    border-radius: 4px;
+    background-color: var(--white);
+    border: solid 1px var(--dodger-blue);
+    color: var(--dodger-blue);
+    width: 120px;
+}
+
+.ant-btn.button-filter:hover, .ant-btn.button-filter:focus, .ant-btn.button-filter:active{
+    border-radius: 4px;
+    color: var(--white);
+    background-color: var(--dodger-blue);
+    border: solid 1px var(--dodger-blue);
+}

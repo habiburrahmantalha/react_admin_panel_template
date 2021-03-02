@@ -1,0 +1,58 @@
+div.leftSideBar {
+  z-index: 2;
+  width: 16%;
+  padding: 10px;
+  height: 100%;
+  position: fixed;
+  text-align: left;
+  background: #515763;
+  top: 45px;
+}
+div.leftSideBar section.sidebarSection {
+  cursor: pointer;
+}
+div.leftSideBar section.sidebarSection div.sidebarLink {
+  height: 40px;
+  font-size: 14px;
+  border-radius: 2px;
+}
+div.leftSideBar section.sidebarSection div.sidebarLink a {
+  padding-left: 15px;
+  padding-top: 10px;
+  display: block;
+  color: #42526e;
+  height: 100%;
+  text-align: left;
+  text-decoration: none;
+}
+div.leftSideBar section.sidebarSection div.sidebarLink.active {
+  background-color: #eaecef;
+}
+div.leftSideBar section.sidebarSection div.sidebarLink.active a {
+  color: #42526e;
+}
+div.leftSideBar section.sidebarSection div.sidebarLink:hover {
+  background-color: #eeeff2;
+}
+div.leftSideBar section.sidebarSection div.sidebarLink:hover a {
+  color: #42526e;
+}
+
+div.link.item{
+  background: #F0F8FF !important;
+}
+
+div.link.item:hover{
+  background: #c4ccd3 !important;
+}
+
+div.ui.item.dropdown{
+  background: #F0F8FF !important;
+}
+
+div.ui.item.dropdown:hover{
+  background: #c4ccd3 !important;
+}
+
+
+/*# sourceMappingURL=LeftSideBar.css.map */

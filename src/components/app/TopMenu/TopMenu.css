@@ -1,0 +1,19 @@
+.topMenu a.item {
+  border-left: 0 !important;
+  margin-left: 50px !important;
+
+}
+.topMenu a.item::before {
+  width: 0 !important;
+}
+.topMenu img {
+  margin-right: 1.5em;
+}
+
+.ui.menu.topMenu{
+  background: #515763;
+}
+.top-menu-text{
+  color: white;
+}
+/*# sourceMappingURL=TopMenu.css.map */

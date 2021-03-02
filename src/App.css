@@ -1,3 +1,7 @@
+@import '~antd/dist/antd.css';
+@import "css/buttons.css";
+@import "css/colors.css";
+
 .App {
   text-align: center;
 }

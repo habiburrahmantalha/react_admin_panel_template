@@ -1,0 +1,28 @@
+.table-item-left-top{
+    border: 1px solid var(--pale-grey-two);
+    background-color: var(--white);
+    padding-left: 16px;
+    padding-top: 16px;
+    padding-bottom: 24px;
+    width: 200px;
+}
+
+.table-item-left{
+
+    border: 1px solid var(--pale-grey-two);
+    border-top: none;
+    background-color: var(--white);
+    padding-left: 16px;
+    padding-top: 16px;
+    padding-bottom: 24px;
+    width: 200px;
+}
+
+.table-item-right{
+    border: 1px solid var(--pale-grey-two);
+    border-left: none;
+    background-color: var(--white);
+    padding-left: 16px;
+    padding-top: 16px;
+    padding-bottom: 24px;
+}
