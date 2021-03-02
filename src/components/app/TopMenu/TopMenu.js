@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
 import './TopMenu.css';
-import {Col, Layout, Row} from "antd";
-import {MenuFoldOutlined, MenuUnfoldOutlined} from "@ant-design/icons";
+import {Col, Dropdown, Layout, Row, Menu, Avatar, Space} from "antd";
+import {LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined} from "@ant-design/icons";
 import SettingsBloc from "../../../bloc/SettingsBloc";
 import BlocBuilder from "bloc-builder-react/src";
 import {TextX} from "../../shared/TextX";
 import AuthBloc from "../../../bloc/AuthBloc";
+import {Box} from "../../shared/Box";
 
 const { Header, Footer, Sider, Content } = Layout;
 export class TopMenu extends Component {
@@ -15,6 +16,7 @@ export class TopMenu extends Component {
     };
 
     render() {
+
         return (
             <Header className="site-layout-background" style={{padding: 0}}>
                 <Row align={"middle"} justify={"space-between"}>
@@ -37,14 +39,37 @@ export class TopMenu extends Component {
                         subject={AuthBloc.instance.user}
                         builder={(snapshot) => {
                             return snapshot.data &&
-                                <div style={{marginRight: 20}}><Col>
-                                    <Row><TextX text={snapshot.data.name} size={16}/></Row>
-                                    <Row><TextX text={snapshot.data.email} size={14}/></Row>
-                                    <Row><TextX text={snapshot.data.user_group.title} size={14}/></Row>
-                                </Col></div>
+                                <Dropdown overlay={this.prepareMenu(snapshot.data)} placement="bottomRight" arrow>
+                                    <div className={'user-menu'}>
+                                        {/*<Col>*/}
+                                        {/*    <Row><TextX text={snapshot.data.name} size={16}/></Row>*/}
+                                        {/*    <Row><TextX text={snapshot.data.email} size={14}/></Row>*/}
+                                        {/*    <Row><TextX text={snapshot.data.user_group.title} size={14}/></Row>*/}
+                                        {/*</Col>*/}
+                                        <Row align={'middle'}><Avatar style={{backgroundColor: '#87d068'}}
+                                                                      icon={<UserOutlined/>}/>
+                                            <Box x={10}/>
+                                            <TextX text={snapshot.data.name} size={16}/>
+                                        </Row>
+                                    </div>
+                                </Dropdown>
                         }}/>
                 </Row>
             </Header>
         )
+    }
+
+    prepareMenu = (data) =>{
+        return <Menu>
+            <Menu.Item>
+                <TextX text={data.email} size={14}/>
+            </Menu.Item>
+            <Menu.Item>
+                <TextX text={data.user_group.title} size={14}/>
+            </Menu.Item>
+            <Menu.Item key={"logout"} icon={<LogoutOutlined />} onClick={()=> AuthBloc.instance.logout()}>
+                {"Logout"}
+            </Menu.Item>
+        </Menu>
     }
 }

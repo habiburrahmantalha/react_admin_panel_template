@@ -17,3 +17,9 @@
   color: white;
 }
 /*# sourceMappingURL=TopMenu.css.map */
+.user-menu{
+  margin-right: 20px;
+  padding: 8px 16px;
+  border: solid 1px var(--dodger-blue);
+  border-radius: 5px;
+}
