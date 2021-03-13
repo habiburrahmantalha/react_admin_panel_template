@@ -6,18 +6,19 @@ const { TextArea } = Input;
 
 export class InputTextArea extends React.Component {
   render() {
-    const { getFieldDecorator } = this.props.form;
-    const { disabled, values = {} } = this.props;
-    const { name, label, placeholder, rules, extra, value, validateTrigger = "onChange" } = values;
+
+    const {value} = this.props;
+    const {name, label, placeholder, rules, prefixIcon, type = "text"} = this.props.values;
 
     return (
-      <Form.Item className="no-bottom-margin" label={label} extra={extra}>
-        {getFieldDecorator(name, {
-          rules: rules,
-          initialValue: value,
-          validateTrigger: validateTrigger,
-        })(<TextArea placeholder={placeholder} disabled={disabled} />)}
-      </Form.Item>
+        <Form.Item
+            label={label}
+            name={name}
+            rules={rules}
+            initialValue={value}
+        >
+          <TextArea prefix={prefixIcon} placeholder={placeholder} type={type}/>
+        </Form.Item>
     );
   }
 }

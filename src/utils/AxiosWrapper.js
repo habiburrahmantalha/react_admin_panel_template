@@ -1,7 +1,7 @@
 import axios from "axios";
 import {localStorageKey} from "./LocalStorage";
 
-const getToken = () => localStorage.getItem(localStorageKey.AUTH_TOKEN);
+export const getToken = () => localStorage.getItem(localStorageKey.AUTH_TOKEN);
 
 let axiosWrapper = axios.create({
     headers: {

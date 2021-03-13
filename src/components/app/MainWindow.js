@@ -22,6 +22,9 @@ import {AreaCreatePage} from "../area/AreaCreatePage";
 import {TownCreatePage} from "../town/TownCreatePage";
 import {UserCreatePage} from "../user/UserCreatePage";
 import {MenuNames} from "../../utils/Constants";
+import {UserGroupListPage} from "../user_group/UserGroupListPage";
+import {UserGroupCreatePage} from "../user_group/UserGroupCreatePage";
+import {UserGroupDetailsPage} from "../user_group/UserGroupDetailsPage";
 
 class MainWindow extends Component {
     render() {
@@ -52,6 +55,11 @@ class MainWindow extends Component {
                    <Route location={location} path={getRouteCreate(MenuNames.user.lower)} component={UserCreatePage}/>
                    <Route location={location} path={getRouteUpdatePath(MenuNames.user.lower)} render = {(props) => <UserCreatePage edit {...props}  />} />
                    <Route location={location} path={getRouteDetailsPath(MenuNames.user.lower)} component={UserDetailsPage}/>
+
+                   <Route location={location} path={getRouteList(MenuNames.user_group.lower)} component={UserGroupListPage} />
+                   <Route location={location} path={getRouteCreate(MenuNames.user_group.lower)} component={UserGroupCreatePage}/>
+                   <Route location={location} path={getRouteUpdatePath(MenuNames.user_group.lower)} render = {(props) => <UserGroupCreatePage edit {...props}  />} />
+                   <Route location={location} path={getRouteDetailsPath(MenuNames.user_group.lower)} component={UserGroupDetailsPage}/>
 
                    {/*_add_from_here*/}
                    {/*<Route location={location} component={Home} />*/}

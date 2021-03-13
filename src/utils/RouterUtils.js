@@ -15,4 +15,6 @@ export const getRouteUpdatePath = (title) => `/${title}/update/:id`;
 export const getRouteUpdate = (title, id) => `/${title}/update/${id}`;
 export const getApiUpdate = (title, id) => `/${title}/update/${id}`;
 
+export const getApiListExport = (title, filter) => `/${title}/export?${filter}`;
+
 /*_add_from_here*/

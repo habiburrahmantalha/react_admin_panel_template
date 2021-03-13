@@ -15,7 +15,7 @@ export class InputSelect extends React.Component {
       <Form.Item
                  label={label}
           name={name}
-          rules={rules}>
+          rules={rules}  initialValue={value}>
           <Select
               showSearch
                   allowClear={true}

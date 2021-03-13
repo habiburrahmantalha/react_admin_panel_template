@@ -21,3 +21,7 @@ export default class LoadingBloc {
     }
 
 }
+
+export const LoadingType = {
+    login: "Login"
+}

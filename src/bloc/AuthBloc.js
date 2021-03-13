@@ -71,8 +71,4 @@ export default class AuthBloc{
     isAdmin(){
         return this.user.value.user_group_id === 6;
     }
-
-    isAgency(){
-        return this.user.value.user_group_id === 3;
-    }
 }

@@ -41,15 +41,18 @@ export default class CrudBloc {
 
     getList(search, name, filterParam){
         LoadingBloc.instance.start(name);
+        LoadingBloc.instance.start(name);
         const filter = prepareUrlWithFilter(search, filterParam)
         axiosWrapper
             .get(BASEURL+ getApiList(name, filter))
             .then((response) => {
                 this.prepareList(response, name);
                 LoadingBloc.instance.end(name);
+                LoadingBloc.instance.end(name);
             })
             .catch((error) => {
                 ErrorBloc.instance.error(error);
+                LoadingBloc.instance.end(name);
                 LoadingBloc.instance.end(name);
             });
     }
@@ -64,7 +67,6 @@ export default class CrudBloc {
 
                 case MenuNames.area.lower:
                     e.region_title = e.region.title
-                    e.agency_title = e.agency.title
                     break;
                 case MenuNames.town.lower:
                     e.region_title = e.region.title
@@ -75,14 +77,7 @@ export default class CrudBloc {
                     e.region_title = getTitlesFromList(e.region)
                     e.area_title = getTitlesFromList(e.area)
                     e.town_title = getTitlesFromList(e.town)
-                    e.agency_title = getTitlesFromList(e.agency)
                     e.user_group_title = e.user_group?.title
-                    break;
-
-                case MenuNames.profile.lower:
-                    e.region_title = e.region.title
-                    e.area_title = e.area.title
-                    e.town_title = e.town.title
                     break;
                 default:
                     list = [];

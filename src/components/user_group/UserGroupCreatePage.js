@@ -3,7 +3,7 @@ import BlocBuilder from "bloc-builder-react/src";
 import SettingsBloc from "../../bloc/SettingsBloc";
 
 import AuthBloc from "../../bloc/AuthBloc";
-import {Form, Spin} from "antd";
+import {Form, Row, Select, Spin} from "antd";
 import {Colors} from "../../css/Colors";
 import {TextX} from "../shared/TextX";
 import {InputText} from "../shared/FormComponent/InputText";
@@ -11,11 +11,13 @@ import {Box} from "../shared/Box";
 import {ButtonX} from "../shared/ButtonX";
 import {InputFields} from "../../utils/InputFields";
 import CrudBloc from "../../bloc/CrudBloc";
+import {MenuNames} from "../../utils/Constants";
 import {getRouteList} from "../../utils/RouterUtils";
 import {InputSelect} from "../shared/FormComponent/InputSelect";
-import {MenuNames} from "../../utils/Constants";
+import {InputFieldOptions} from "../../utils/InputFieldOptions";
+import {FormSkeleton} from "../shared/FormSkeleton";
 
-export class AreaCreatePage extends React.Component{
+export class UserGroupCreatePage extends React.Component{
 
 
     formRef = React.createRef();
@@ -24,50 +26,59 @@ export class AreaCreatePage extends React.Component{
         //console.log(props);
 
         this.state = {
-            title: InputFields.title,
-            region_id: InputFields.region_id,
+            name: InputFields.name,
+            status: InputFields.status,
         };
 
         if(this.props.edit){
             const {id} = this.props.match.params;
-            CrudBloc.instance.getDetails(id, MenuNames.area.lower);
+            CrudBloc.instance.getDetails(id, MenuNames.user_group.lower);
         }else{
-            CrudBloc.instance.clearDetails(MenuNames.area.lower);
+            CrudBloc.instance.clearDetails(MenuNames.user_group.lower);
         }
 
-        CrudBloc.instance.getList("", MenuNames.region.lower, [])
     }
 
     componentDidMount() {
+
+        let formRef = this.formRef;
         if(this.props.edit){
-            SettingsBloc.instance.setCurrentPageTitle("Area Update");
-        }else {
-            SettingsBloc.instance.setCurrentPageTitle("Create new Area");
-            const history = this.props.history;
-            CrudBloc.instance.createResponse.subscribe({
+            SettingsBloc.instance.setCurrentPageTitle("UserGroup Update");
+            this.user_groupSubcription = CrudBloc.instance.user_group.subscribe({
                 next(x) {
                     if (x){
-                        history.push(getRouteList(MenuNames.area.lower));
+
+                        //formRef.current?.setFieldsValue({ area_id: x.area_id });
+                    }
+                },
+            });
+        }else {
+            SettingsBloc.instance.setCurrentPageTitle("Create new UserGroup");
+            const history = this.props.history;
+            this.createResponseSubscription = CrudBloc.instance.createResponse.subscribe({
+                next(x) {
+                    if (x){
+                        history.push(getRouteList(MenuNames.user_group.lower));
                         CrudBloc.instance.clearCreateResponseData();
                     }
                 },
-                error(err) {
-                    console.error('something wrong occurred: ' + err);
-                },
-                complete() {
-                    console.log('done');
-                }
             });
         }
+
+    }
+    componentWillUnmount() {
+        console.log("Unmount")
+        this.user_groupSubcription?.unsubscribe()
+        this.createResponseSubscription?.unsubscribe();
     }
 
     onFinish = (values) => {
         console.log('Success:', values);
         if(this.props.edit){
             const {id} = this.props.match.params;
-            CrudBloc.instance.update(id, values, MenuNames.area.lower);
+            CrudBloc.instance.update(id, values, MenuNames.user_group.lower);
         }else{
-            CrudBloc.instance.createNew(values, MenuNames.area.lower);
+            CrudBloc.instance.createNew(values, MenuNames.user_group.lower);
         }
 
     };
@@ -76,24 +87,19 @@ export class AreaCreatePage extends React.Component{
         return (
             <Spin spinning={false}>
                 <BlocBuilder
-                    subject = {CrudBloc.instance.area}
+                    subject = {CrudBloc.instance.user_group}
                     builder = {(snapshot) => {
                         console.log(snapshot.data);
                         //console.log(snapshot.data ? snapshot.data[this.state.title.name] : null);
                         return   !this.props.edit ||  snapshot.data ? <Form ref={this.formRef} name="control-ref" onFinish={this.onFinish} layout="vertical" className="login-form">
                             <InputText
-                                values={this.state.title}
-                                value={this.props.edit && snapshot.data ? snapshot.data[this.state.title.name] : null}/>
-                            <BlocBuilder
-                                subject = {CrudBloc.instance.regionList}
-                                builder = {(snapshotRegion) => {
-                                    console.log(snapshotRegion.data);
-                                    return  <InputSelect
-                                        values={this.state.region_id}
-                                        options={snapshotRegion.data ? snapshotRegion.data.list : []}
-                                        value={this.props.edit && snapshot.data ? snapshot.data[this.state.region_id.name] : null}
-                                    />
-                                }}/>
+                                values={this.state.name}
+                                value={this.props.edit && snapshot.data ? snapshot.data[this.state.name.name] : null}/>
+
+                            <InputSelect
+                                values={this.state.status}
+                                options={InputFieldOptions.status}
+                            />
                             <Box y={10}/>
                             <Form.Item>
                                 <ButtonX
@@ -107,7 +113,7 @@ export class AreaCreatePage extends React.Component{
                                     //console.log(snapshotError.data);
                                     return  <TextX text={snapshotError.data} color={Colors.water_blue}/>
                                 }}/>
-                        </Form> : <Spin/>
+                        </Form> : <FormSkeleton line={2}/>
                     }}/>
             </Spin>
         );

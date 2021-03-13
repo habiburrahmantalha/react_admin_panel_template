@@ -13,12 +13,8 @@ export const MenuNames = {
     region: { lower: "region", upper: "Region"},
     area: { lower: "area", upper: "Area"},
     town: { lower: "town", upper: "Town"},
-    agency: { lower: "agency", upper: "Agency"},
     user: { lower: "user", upper: "User"},
     user_group: { lower: "user_group", upper: "UserGroup"},
-    profile: { lower: "profile", upper: "Profile"},
-
-    approval: { lower: "approval", upper: "Approval"},
 }
 
 export const APP_NAME="Template"

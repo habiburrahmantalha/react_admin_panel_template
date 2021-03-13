@@ -1,15 +1,15 @@
 import FilterInputItems from "../shared/Filter/FilterInputItems";
 import {tableContentType} from "../shared/table/table_utils";
+export const user_groupQueryFilterParams = () => user_groupFilterParams.reduce((acm, cur) => [...acm, cur.name], []);
 
-export const areaQueryFilterParams = () => areaFilterParams.reduce((acm, cur) => [...acm, cur.name], []);
-
-export const areaFilterParams = [
+export const user_groupFilterParams = [
   FilterInputItems.id,
-  FilterInputItems.title,
+  FilterInputItems.name,
   FilterInputItems.region_id,
+  FilterInputItems.area_id,
 ];
 
-export const areaListAttributes = [
+export const user_groupListAttributes = [
   {
     title: 'ID',
     field: 'id',
@@ -21,9 +21,9 @@ export const areaListAttributes = [
     type: tableContentType.TEXT,
   },
   {
-    title: 'Region',
-    field: 'region_title',
-    type: tableContentType.TEXT,
+    title: 'Status',
+    field: 'status',
+    type: tableContentType.STATUS,
   },
   {
     title: 'Created At',
@@ -37,26 +37,21 @@ export const areaListAttributes = [
   },
 ];
 
-export const areaDetailsAttributes = [
+export const user_groupDetailsAttributes = [
   {
     title: 'ID',
     field: 'id',
     type: tableContentType.TEXT,
   },
   {
-    title: 'Title',
-    field: 'title',
+    title: 'Name',
+    field: 'name',
     type: tableContentType.TEXT,
   },
   {
-    title: 'Region',
-    field: 'region_title',
-    type: tableContentType.TEXT,
-  },
-  {
-    title: 'Region ID',
-    field: 'region_id',
-    type: tableContentType.TEXT,
+    title: 'Status',
+    field: 'status',
+    type: tableContentType.STATUS,
   },
   {
     title: 'Created At',
